@@ -241,6 +241,11 @@ void main() {
           Jiffy(Jiffy().subtract(seconds: 5))
               .fromNow(withoutPrefixAndSuffix: true),
           'a few seconds');
+      expect(Jiffy(Jiffy().add(years: 3)).fromNow(withoutPrefixAndSuffix: true),
+          '3 years');
+      expect(
+          Jiffy(Jiffy().add(minutes: 15)).fromNow(withoutPrefixAndSuffix: true),
+          '15 minutes');
     });
   });
 }
