@@ -467,13 +467,15 @@ class Jiffy {
 
   String get jms => DateFormat.jms().format(_dateTime);
 
-  String fromNow() {
-    return _defaultLocale.getRelativeTime(_dateTime);
+  String fromNow({bool withoutPrefixAndSuffix = false}) {
+    return _defaultLocale.getRelativeTime(_dateTime,
+        omitPrefixAndSuffix: withoutPrefixAndSuffix);
   }
 
-  String from(var input) {
+  String from(var input, {bool withoutPrefixAndSuffix = false}) {
     var dateTime = _parse(input);
-    return _defaultLocale.getRelativeTime(_dateTime, dateTime);
+    return _defaultLocale.getRelativeTime(_dateTime,
+        date2: dateTime, omitPrefixAndSuffix: withoutPrefixAndSuffix);
   }
 
   num diff(var input, [Units units = Units.MILLISECOND, bool asFloat = false]) {

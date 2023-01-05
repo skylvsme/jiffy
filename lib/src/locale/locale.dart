@@ -11,7 +11,8 @@ abstract class Locale {
 
   StartOfWeek startOfWeek();
 
-  String getRelativeTime(DateTime date1, [DateTime? date2]) {
+  String getRelativeTime(DateTime date1,
+      {DateTime? date2, bool omitPrefixAndSuffix = false}) {
     final relative = relativeTime();
     final _date2 = date2 ?? DateTime.now();
     final _allowFromNow = _date2.isBefore(date1);
@@ -26,6 +27,11 @@ abstract class Locale {
     } else {
       prefix = relative.prefixAgo();
       suffix = relative.suffixAgo();
+    }
+
+    if (omitPrefixAndSuffix) {
+      prefix = '';
+      suffix = '';
     }
 
     final num seconds = elapsed / 1000;
